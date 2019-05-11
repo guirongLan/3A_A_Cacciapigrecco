@@ -1,3 +1,4 @@
+//bottoni
 int button1=6;
 int button2=5;
 int button3=4;
@@ -6,10 +7,12 @@ int button5=2;
 
 int score=0; 
 int volte=3;
-int tempo=0;
+int tempo;
+//LCD
 #include <LiquidCrystal.h>
 const int rs = 13, en = 12, d4 = 11, d5 = 10, d6 = 9, d7 = 8;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+//caraterri personarizzati
 byte Cuore[8] = {
         B00000,
         B01010,
@@ -20,6 +23,7 @@ byte Cuore[8] = {
         B00100,
         B00000
 };
+
 byte ghostChar[8] = {
         B00000,
         B01110,
@@ -29,7 +33,8 @@ byte ghostChar[8] = {
         B11111,
         B10101,
         B00000
-  };
+};
+
 void setup() {
   // put your setup code here, to run once:
 pinMode(button1,INPUT);
@@ -37,13 +42,12 @@ pinMode(button2,INPUT);
 pinMode(button3,INPUT);
 pinMode(button4,INPUT);
 pinMode(button5,INPUT);
-randomSeed(analogRead(0));//dichiaro random
+//lcd
 lcd.begin(16, 2);
 lcd.createChar(0, Cuore);
 lcd.write(byte(0));
 lcd.createChar(1,ghostChar);
 lcd.write(byte(1));  
-
 }
 
 void programma()
@@ -52,65 +56,84 @@ void programma()
   lcd.print("punteggi:");
   lcd.print(score);
   lcd.print(" ");
-  lcd.write(0);
-  lcd.write(0);
-  lcd.write(0);
-  lcd.setCursor(0,1); 
+ stampa(volte);//errore
+  lcd.setCursor(0,1); //la parte del LCD
   if(tempo==1)
   {
-   lcd.write(1); 
-   while(digitalRead(button1)==LOW){}
-   if (digitalRead(button1)==HIGH) 
-      { 
-        score++;
-        delay(1);
-        lcd.clear();
-        lcd.print("punteggi:");
-        lcd.print(score);
-        lcd.print(" ");
-        if(volte==3){
-        lcd.write(0);
-        lcd.write(0);
-        lcd.write(0);
-        }
-        if(volte==2){
-        lcd.write(0);
-        lcd.write(0);
-        }
-        if(volte==1){
-          lcd.write(0);
-        }
-        lcd.setCursor(0,1);
-        lcd.write(1);
+   lcd.write(1);
+   int i=0;
+   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
+    i++;
+    delay(1);
+   }
+    if (digitalRead(button1)==HIGH)
+    {
+     if(i<1000)
+     {
+      score++;
+      delay(1);
       }
-      else{
+      else
+      {
         volte--;
-        delay(1);
-        lcd.clear();
-        lcd.print("punteggi:");
-        lcd.print(score);
-        lcd.print(" ");
-        if(volte==2){
-        lcd.write(0);
-        lcd.write(0);
-        }
-        if(volte==1){
-          lcd.write(0);
-        }
-        lcd.setCursor(0,1);
-        lcd.write(1);
       }
+   }
+   else{
+    volte--;
+   }
   }
   if(tempo==2)
   {
     lcd.print(" ");
     lcd.write(1);
+    int i=0;
+   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
+    i++;
+    delay(1);
+   }
+    if (digitalRead(button1)==HIGH)
+    {
+     if(i<1000)
+     {
+      score++;
+      delay(1);
+      }
+      else
+      {
+        volte--;
+      }
+   }
+   else{
+    volte--;
+   }
+  }
   }
   if(tempo==3)
   {
     lcd.print(" ");
     lcd.print(" ");
     lcd.write(1);
+    int i=0;
+   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
+    i++;
+    delay(1);
+   }
+    if (digitalRead(button1)==HIGH)
+    {
+     if(i<1000)
+     {
+      score++;
+      delay(1);
+      }
+      else
+      {
+        volte--;
+      }
+   }
+   else{
+    volte--;
+   }
+  }
   }
   if(tempo==4)
   {
@@ -118,6 +141,27 @@ void programma()
     lcd.print(" ");
     lcd.print(" ");
     lcd.write(1);
+    int i=0;
+   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
+    i++;
+    delay(1);
+   }
+    if (digitalRead(button1)==HIGH)
+    {
+     if(i<1000)
+     {
+      score++;
+      delay(1);
+      }
+      else
+      {
+        volte--;
+      }
+   }
+   else{
+    volte--;
+   }
+  }
   }
   if(tempo==5)
   {
@@ -126,13 +170,50 @@ void programma()
     lcd.print(" ");
     lcd.print(" ");
     lcd.write(1);
-  }
+  int i=0;
+   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
+    i++;
+    delay(1);
    }
+    if (digitalRead(button1)==HIGH)
+    {
+     if(i<1000)
+     {
+      score++;
+      delay(1);
+      }
+      else
+      {
+        volte--;
+      }
+   }
+   else{
+    volte--;
+   }
+  }
+  }
+ }
+ void stampa(int a)
+ {
+  if(a==3){
+  lcd.write(0);
+  lcd.write(0);
+  lcd.write(0);
+  }
+   if(a==2){
+  lcd.write(0);
+  lcd.write(0);
+   }
+    if(a==1){
+  lcd.write(0);
+   }
+ }
 void loop() {
   // put your main code here, to run repeatedly: 
-  tempo=random(1,6);
-  while(volte!=0){
-  programma();
-  }
- 
+  //random
+while(volte!=0){
+randomSeed(analogRead(0));
+tempo=random(1,6);//random da 1 a 5
+programma();
+}
 }
