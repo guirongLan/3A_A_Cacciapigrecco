@@ -81,7 +81,7 @@ void programma()
    }
     if (digitalRead(button1)==HIGH)
     {
-     if(i<3000)
+     if(i<3000)//se utente non clica piu di 3s perde vita
      {
       score++;
       delay(200);
@@ -93,7 +93,7 @@ void programma()
         volte--;
       }
    }
-   else{
+   else{//se utente clicka sbagliato perde vita
         delay(200);
         volte--;
    }
