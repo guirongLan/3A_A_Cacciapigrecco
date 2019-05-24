@@ -56,112 +56,135 @@ void programma()
   lcd.print("punteggi:");
   lcd.print(score);
   lcd.print(" ");
- stampa(volte);//errore
+    if(volte==3){
+  lcd.write(0);
+  lcd.write(0);
+  lcd.write(0);
+  }
+   if(volte==2){
+  lcd.write(0);
+  lcd.write(0);
+   }
+    if(volte==1){
+  lcd.write(0);
+   }
+   
   lcd.setCursor(0,1); //la parte del LCD
+  
   if(tempo==1)
   {
    lcd.write(1);
    int i=0;
-   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
-    i++;
+   while(digitalRead(button1)==LOW && digitalRead(button2)==LOW && digitalRead(button3)==LOW && digitalRead(button4)==LOW && digitalRead(button5)==LOW){
     delay(1);
+    i++;
    }
     if (digitalRead(button1)==HIGH)
     {
-     if(i<1000)
+     if(i<3000)
      {
       score++;
-      delay(1);
+      delay(200);
+      i=0;
       }
       else
       {
+        delay(200);
         volte--;
       }
    }
    else{
-    volte--;
+        delay(200);
+        volte--;
    }
   }
   if(tempo==2)
   {
-    lcd.print(" ");
-    lcd.write(1);
-    int i=0;
-   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
-    i++;
+   lcd.print(" ");
+   lcd.write(1);
+   int i=0;
+   while(digitalRead(button1)==LOW && digitalRead(button2)==LOW && digitalRead(button3)==LOW && digitalRead(button4)==LOW && digitalRead(button5)==LOW){
     delay(1);
+    i++;
    }
-    if (digitalRead(button1)==HIGH)
+    if (digitalRead(button2)==HIGH)
     {
-     if(i<1000)
+     if(i<3000)
      {
       score++;
-      delay(1);
+      delay(200);
+      i=0;
       }
       else
       {
+        delay(200);
         volte--;
       }
    }
    else{
-    volte--;
+        delay(200);
+        volte--;
    }
   }
-  }
+
   if(tempo==3)
   {
     lcd.print(" ");
     lcd.print(" ");
     lcd.write(1);
-    int i=0;
-   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
-    i++;
+   int i=0;
+   while(digitalRead(button1)==LOW && digitalRead(button2)==LOW && digitalRead(button3)==LOW && digitalRead(button4)==LOW && digitalRead(button5)==LOW){
     delay(1);
+    i++;
    }
-    if (digitalRead(button1)==HIGH)
+    if (digitalRead(button3)==HIGH)
     {
-     if(i<1000)
+     if(i<3000)
      {
       score++;
-      delay(1);
+      delay(200);
+      i=0;
       }
       else
       {
+        delay(200);
         volte--;
       }
    }
    else{
-    volte--;
+        delay(200);
+        volte--;
    }
-  }
   }
   if(tempo==4)
   {
     lcd.print(" ");
     lcd.print(" ");
     lcd.print(" ");
-    lcd.write(1);
-    int i=0;
-   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
-    i++;
+   lcd.write(1);
+   int i=0;
+   while(digitalRead(button1)==LOW && digitalRead(button2)==LOW && digitalRead(button3)==LOW && digitalRead(button4)==LOW && digitalRead(button5)==LOW){
     delay(1);
+    i++;
    }
-    if (digitalRead(button1)==HIGH)
+    if (digitalRead(button4)==HIGH)
     {
-     if(i<1000)
+     if(i<3000)
      {
       score++;
-      delay(1);
+      delay(200);
+      i=0;
       }
       else
       {
+        delay(200);
         volte--;
       }
    }
    else{
-    volte--;
+        delay(200);
+        volte--;
    }
-  }
   }
   if(tempo==5)
   {
@@ -169,45 +192,38 @@ void programma()
     lcd.print(" ");
     lcd.print(" ");
     lcd.print(" ");
-    lcd.write(1);
-  int i=0;
-   while(digitalRead(button1)==LOW || digitalRead(button1)==LOW||digitalRead(button1)==LOW || digitalRead(button1)==LOW ||digitalRead(button1)==LOW){
-    i++;
+   lcd.write(1);
+   int i=0;
+   while(digitalRead(button1)==LOW && digitalRead(button2)==LOW && digitalRead(button3)==LOW && digitalRead(button4)==LOW && digitalRead(button5)==LOW){
     delay(1);
+    i++;
    }
-    if (digitalRead(button1)==HIGH)
+    if (digitalRead(button5)==HIGH)
     {
-     if(i<1000)
+     if(i<3000)
      {
       score++;
-      delay(1);
+      delay(200);
+      i=0;
       }
       else
       {
+        delay(200);
         volte--;
       }
    }
    else{
-    volte--;
+        delay(200);
+        volte--;
    }
   }
+  if (volte == 0){
+    lcd.clear();
+    lcd.print("hai perso");
+    delay(5000);
   }
  }
- void stampa(int a)
- {
-  if(a==3){
-  lcd.write(0);
-  lcd.write(0);
-  lcd.write(0);
-  }
-   if(a==2){
-  lcd.write(0);
-  lcd.write(0);
-   }
-    if(a==1){
-  lcd.write(0);
-   }
- }
+
 void loop() {
   // put your main code here, to run repeatedly: 
   //random
@@ -216,4 +232,5 @@ randomSeed(analogRead(0));
 tempo=random(1,6);//random da 1 a 5
 programma();
 }
+
 }
